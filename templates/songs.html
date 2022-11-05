@@ -1,0 +1,17 @@
+<h1>Songs List</h1>
+{% for music in songs %}
+<ul>
+    <li>Artiste: {{ music.artiste_id }}</li>
+    <li>Song: {{ music.title }} </li>
+</ul>
+{% endfor %}
+<form action="" method="POST">
+    {% csrf_token %} 
+    <input type="text" name="firstname" placeholder="firstname"><br>
+    <input type="text" name="lastname" placeholder="lastname"><br>
+    <input type="number" name="age" placeholder="artist age"><br>
+    <!-- <input type="text" name="songname" placeholder="songname"><br>
+    <input type="number" name="likes" placeholder="likes"><br>
+    <input type="date" name="date" placeholder="date released"><br> -->
+    <input type="submit" value="">
+</form>
