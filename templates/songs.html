@@ -5,13 +5,14 @@
     <li>Song: {{ music.title }} </li>
 </ul>
 {% endfor %}
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %} 
-    <input type="text" name="firstname" placeholder="firstname"><br>
+    {{ form.as_p }}
+    <!-- <input type="text" name="firstname" placeholder="firstname"><br>
     <input type="text" name="lastname" placeholder="lastname"><br>
-    <input type="number" name="age" placeholder="artist age"><br>
+    <input type="number" name="age" placeholder="artist age"><br> -->
     <!-- <input type="text" name="songname" placeholder="songname"><br>
     <input type="number" name="likes" placeholder="likes"><br>
     <input type="date" name="date" placeholder="date released"><br> -->
-    <input type="submit" value="">
+    <input type="submit" value="Submit">
 </form>
