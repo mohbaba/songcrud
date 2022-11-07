@@ -1,5 +1,6 @@
+
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import SongsForm
 from .models import *
 
@@ -11,13 +12,20 @@ def songs(request):
     return render(request, 'songs.html',{'songs':songs})
 
 def upload(request):
-    context ={}
-
-    # add the dictionary during initialization
-    form = SongsForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-
-    context['form']= form
+    firstname = request.POST['firstname']
+    lastname = request.POST['lastname']
+    age = request.POST['age']
+    songname = request.POST['songname']
+    likes = request.POST['likes']
+    dates = request.POST['dates']
     
-    return render(request, 'songs.html',context)
+    artist = Artiste(first_name = firstname,last_name = lastname, age = age)
+    artist.save()
+    song = Song(
+        title = songname,
+        date_released = dates,
+        likes = likes,
+        artiste_id = Artiste.objects.get(first_name = firstname,last_name = lastname, age = age)
+        )
+    song.save()
+    return redirect('/')
