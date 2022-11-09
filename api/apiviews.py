@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from django.urls import is_valid_path
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -61,9 +60,9 @@ def artiste_detail(request,id):
     
     
 @api_view(['GET','PUT','DELETE'])
-def song_detail(request,title):
+def song_detail(request,id):
     try:
-        song = Song.objects.get(pk=title)
+        song = Song.objects.get(pk=id)
         serializer = SongSerializer(song,data = request.data)
     except Song.DoesNotExist :
         return Response(status=status.HTTP_404_NOT_FOUND)

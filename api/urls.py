@@ -6,7 +6,7 @@ from .apiviews import *
 urlpatterns = [
     path('songs',song_list),
     path('artistes', artiste_list),
-    path('songs/<str:title>',song_detail), 
+    path('songs/<int:id>',song_detail), 
     # path('', SongApiView.as_view()),
     # path('artiste', ArtisteAPIView.as_view()),
 ]
