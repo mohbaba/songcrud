@@ -8,7 +8,7 @@ from .serializers import SongSerializer , ArtisteSerializer
 
 # Create your views here.
 @api_view(['GET','POST'])
-def song_list(request):
+def song_list(request,format = None):
     
     if request.method == 'GET':
         songs = Song.objects.all()
@@ -22,7 +22,7 @@ def song_list(request):
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         
 @api_view(['GET','POST'])
-def artiste_list(request):
+def artiste_list(request,format = None):
     
     if request.method == 'GET':
         artists = Artiste.objects.all()
@@ -60,7 +60,7 @@ def artiste_detail(request,id):
     
     
 @api_view(['GET','PUT','DELETE'])
-def song_detail(request,id):
+def song_detail(request,id, format = None):
     try:
         song = Song.objects.get(pk=id)
         serializer = SongSerializer(song,data = request.data)
